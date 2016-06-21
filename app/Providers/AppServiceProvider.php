@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace CoalitionTest\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

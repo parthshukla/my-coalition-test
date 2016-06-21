@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace CoalitionTest\Events;
 
 abstract class Event
 {

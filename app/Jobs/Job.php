@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace CoalitionTest\Jobs;
 
 use Illuminate\Bus\Queueable;
 
