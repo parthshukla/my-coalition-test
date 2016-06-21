@@ -59,7 +59,12 @@
             
           </div>
 
-          <h2 class="sub-header">Product List</h2>
+          <div class="row">
+          <div class="col-md-6"><h2>Product List</h2></div>
+          <div class="col-md-6"><a href="#" id="add-product-btn" class="btn btn-primary pull-right" data-toggle="modal" data-target="#add-product-modal">Add Product</a></div>
+          </div>
+
+          
           <div class="table-responsive">
             <table class="table table-striped" id="product-list-table">
               <thead>
@@ -91,6 +96,45 @@
         </div>
       </div>
     </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="add-product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add New Product</h4>
+      </div>
+      <form id="add-product-form" name="add-product-form" method="">
+      <div class="modal-body">
+        
+        <div class="form-group">
+          <label for="productName">Product Name</label>
+          <input type="text" class="form-control" id="productName" name="name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="productQuantity">Quantity In Stock</label>
+          <input type="text" class="form-control" id="productQuantity" name="quantity" required>
+        </div>
+
+        <div class="form-group">
+          <label for="productPrice">Price Per Item</label>
+          <input type="text" class="form-control" id="productPrice" name="price_per_unit" required>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="save-product">Save changes</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 
 <!-- Mainly scripts -->
 <script src="{{ URL::asset('js/vendor.js') }}"></script>

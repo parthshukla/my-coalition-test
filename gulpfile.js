@@ -17,6 +17,7 @@ elixir(function(mix) {
     /* mixing all the required css files by different vendors */
      mix.styles([
     	'bootstrap/dist/css/bootstrap.min.css',
+      'sweetalert/dist/sweetalert.css',
     	],'public/css/vendor.css','bower_components/');
 
      /* Mixing the css of the base theme */
@@ -30,7 +31,8 @@ elixir(function(mix) {
     /* js files of vendors */
        mix.scripts([
         'jquery/dist/jquery.min.js',
-        'bootstrap/dist/js/bootstrap.js'            
+        'bootstrap/dist/js/bootstrap.js',
+        'sweetalert/dist/sweetalert.min.js',            
 
       ],'public/js/vendor.js','bower_components/');
 

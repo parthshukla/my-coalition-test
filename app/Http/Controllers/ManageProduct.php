@@ -52,7 +52,7 @@ class ManageProduct extends Controller
     public function store(Request $request)
     {
         //adding data to the database
-        $productStock = new ProductStock;
+        $productStock = new ProductStocks;
 
         $productStock->name = $request->name;
         $productStock->quantity = $request->quantity;
@@ -60,7 +60,7 @@ class ManageProduct extends Controller
 
         $productStock->save();
 
-        return response()->json(['status' => 'success']); 
+        return response()->json(['status' => '200']); 
 
 
 

@@ -50,3 +50,5 @@ function calculateGrandTotal() {
 
  });
  /* end of file manage_stock.js */
+
+//# sourceMappingURL=application.js.map
