@@ -63,6 +63,7 @@
                   <th>Price Per Item</th>
                   <th>Datetime Submitted</th>
                   <th>Total</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -73,6 +74,7 @@
                   <td>{{ $row->price_per_unit }}</td>
                   <td>{{ $row->created_at }}</td>
                   <td>{{ $row->quantity * $row->price_per_unit }} </td>
+                  <td><a href="#" id="edit-product-btn" class="btn btn-warning edit-action" data-toggle="modal" data-target="#update-product-modal" data-id="{{ $row->id }}">Edit</a></td>
                 </tr>
                 @endforeach
                 <tr>
@@ -87,7 +89,7 @@
     </div>
 
 
-<!-- Modal -->
+<!-- Add Modal -->
 <div class="modal fade" id="add-product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -99,25 +101,62 @@
       <div class="modal-body">
         
         <div class="form-group">
-          <label for="productName">Product Name</label>
-          <input type="text" class="form-control" id="productName" name="name" required>
+          <label for="name">Product Name</label>
+          <input type="text" class="form-control" id="name" name="name" required>
         </div>
 
         <div class="form-group">
-          <label for="productQuantity">Quantity In Stock</label>
-          <input type="text" class="form-control" id="productQuantity" name="quantity" required>
+          <label for="quantity">Quantity In Stock</label>
+          <input type="text" class="form-control" id="quantity" name="quantity" required>
         </div>
 
         <div class="form-group">
-          <label for="productPrice">Price Per Item</label>
-          <input type="text" class="form-control" id="productPrice" name="price_per_unit" required>
+          <label for="price_per_unit">Price Per Item</label>
+          <input type="text" class="form-control" id="price_per_unit" name="price_per_unit" required>
         </div>
 
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" id="save-product">Save changes</button>
+        <button type="submit" class="btn btn-primary" id="save-product">Save</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="update-product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myUpdateModalLabel">Update Product</h4>
+      </div>
+      <form id="update-product-form" name="update-product-form" method="">
+      <div class="modal-body">
+        
+        <div class="form-group">
+          <label for="editName">Product Name</label>
+          <input type="text" class="form-control" id="editName" name="editName" required>
+        </div>
+
+        <div class="form-group">
+          <label for="editQuantity">Quantity In Stock</label>
+          <input type="text" class="form-control" id="editQuantity" name="editQuantity" required>
+        </div>
+
+        <div class="form-group">
+          <label for="editPrice">Price Per Item</label>
+          <input type="text" class="form-control" id="editPrice" name="editPrice" required>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="edit-product">Save changes</button>
       </div>
       </form>
     </div>
@@ -137,8 +176,5 @@
         }
     });
 </script>
-
-
-
   </body>
 </html>

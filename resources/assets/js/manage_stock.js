@@ -73,7 +73,19 @@ function calculateGrandTotal() {
  $('#add-product-btn').click(function() {
 
  	$('#add-product-form')[0].reset();
- 	
+
+  });
+
+ /**
+  * Handling edit action
+  */
+  $('.edit-action').click(function(){
+
+  	var productId = $(this).attr('data-id');
+  	/* initializing form fields */
+  	$('#editName').val($(this).parents("tr").children("td:nth-child(1)").text());
+  	$('#editQuantity').val($(this).parents("tr").children("td:nth-child(2)").text());
+  	$('#editPrice').val($(this).parents("tr").children("td:nth-child(3)").text());
   });
 
  });
