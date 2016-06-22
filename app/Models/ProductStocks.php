@@ -21,33 +21,35 @@ class ProductStocks extends Model
      */
     protected $table = 'product_stocks';
 
-    protected $totalValue;
+    /**
+     * Validation rule for adding new product
+     * information.
+     *
+     * @static 
+     * @access  public
+     */
+    public static $rules = [
+                      'name' => 'required|max:128',
+                      'quantity' => 'required|integer',
+                      'price_per_unit' => 'required|numeric'
+                    ];
 
     //--------------------------------------------------------------------------
 
+    /**
+     * getStockDetails
+     *
+     * Returns the list of products with their 
+     * inventory details.
+     *
+     * @static 
+     * @access public
+     * @return object
+     */
     public static function getStockDetails()
-    {
-        $stockInfo = [];
-        //$dbResult = Self::orderBy('created_at', 'desc')->get();
+    { 
+      return Self::orderBy('created_at', 'desc')->get();
 
-        return Self::orderBy('created_at', 'desc')->get();
-
-        if ($dbResult)
-        {
-            foreach($dbResult as $row)
-            {
-                $stockInfo[] = [
-                               'id' => $row->id,
-                               'name' => $row->name,
-                               'quantity' => $row->quantity,
-                               'price_per_item' => $row->price_per_item,
-                               'created_at' => $row->created_at,
-                               'value' => $row->quantity * $row->price_per_item
-                           ];
-
-                $totalValue += ($row->quantity * $row->price_per_item);
-            }
-        }
     }   
 
 }

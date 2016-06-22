@@ -8,6 +8,8 @@ use CoalitionTest\Http\Requests;
 
 use CoalitionTest\Models\ProductStocks;
 
+use Validator;
+
 /**
  * ManageProduct class.
  *
@@ -51,19 +53,35 @@ class ManageProduct extends Controller
      */
     public function store(Request $request)
     {
-        //adding data to the database
-        $productStock = new ProductStocks;
+        $validator = Validator::make($request->all(), ProductStocks::$rules);
+        if( ! $validator->fails() ) 
+        {
+            //adding data to the database
+             $productStock = new ProductStocks;
 
-        $productStock->name = $request->name;
-        $productStock->quantity = $request->quantity;
-        $productStock->price_per_unit = $request->price_per_unit;
-
-        $productStock->save();
-
-        return response()->json(['status' => '200']); 
-
-
-
+              $productStock->name = $request->name; 
+              $productStock->quantity = $request->quantity;
+              $productStock->price_per_unit = $request->price_per_unit;
+              $productStock->save();
+              $responseData = [
+                    'status' => 200,
+                    'data'  => [
+                        'name' => $productStock->name,
+                        'quantity' => $productStock->quantity,
+                        'price_per_unit' => $productStock->price_per_unit,
+                        'created_at' => $productStock->created_at,
+                        'total' => $productStock->quantity * $productStock->price_per_unit,
+                    ],
+               ];
+        }
+        else 
+        {
+            $responseData = [
+                    'status' => 400,
+                    'error' => $validator->errors()->all(),
+                    ];
+        }
+        return response()->json($responseData);
     }
 
     //--------------------------------------------------------------------------
