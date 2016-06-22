@@ -105,7 +105,7 @@ class ManageProduct extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -117,8 +117,39 @@ class ManageProduct extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), ProductStocks::$rules);
+        if( ! $validator->fails() ) 
+        {
+            //adding data to the database
+             $productStock = ProductStocks::find($id);
+
+              $productStock->name = $request->name; 
+              $productStock->quantity = $request->quantity;
+              $productStock->price_per_unit = $request->price_per_unit;
+              $productStock->save();
+              $responseData = [
+                    'status' => 200,
+                    'data'  => [
+                        'name' => $productStock->name,
+                        'quantity' => $productStock->quantity,
+                        'price_per_unit' => $productStock->price_per_unit,
+                        'created_at' => $productStock->created_at,
+                        'total' => $productStock->quantity * $productStock->price_per_unit,
+                    ],
+               ];
+        }
+        else 
+        {
+            $responseData = [
+                    'status' => 400,
+                    'error' => $validator->errors()->all(),
+                    ];
+        }
+        
+        return response()->json($responseData);        
     }
+
+    //-------------------------------------------------------------------------
 
     /**
      * Remove the specified resource from storage.

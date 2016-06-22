@@ -152,6 +152,8 @@
           <input type="text" class="form-control" id="editPrice" name="editPrice" required>
         </div>
 
+        <input type="hidden" data-id="" id="editProductId">
+
 
       </div>
       <div class="modal-footer">
